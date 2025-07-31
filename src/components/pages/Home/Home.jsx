@@ -35,7 +35,7 @@ export default function Home() {
                                 {/* Intro Text */}
                                 <div className="desc">
                                     <h2 className="subheading">Hi, I'm</h2>
-                                    <h1 className="mb-4">hello</h1>
+                                    <h1 className="mb-4">Vikram Gangpariya</h1>
                                     <p className="mb-4">
                                         A Node.js backend developer from India with a passion for building fast, secure, and scalable APIs using JavaScript and TypeScript.
                                     </p>

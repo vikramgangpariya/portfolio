@@ -4,7 +4,7 @@ export default function Sidebar() {
     return (
         <aside id="colorlib-aside" role="complementary" className="js-fullheight text-center">
             <h1 id="colorlib-logo">
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/">Vikram</NavLink>
             </h1>
             <nav id="colorlib-main-menu" role="navigation">
                 <ul>
