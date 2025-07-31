@@ -15,7 +15,7 @@ export default function About() {
                                 <div className="col-md-8 text-center heading-section">
                                     <h2 className="mb-4">About Me</h2>
                                     <p>
-                                        I'm <strong>Vikram Gangpariya</strong>, a passionate backend developer from Surat, India with 2+ years of professional experience in building scalable APIs and robust server-side solutions.
+                                        I'm <strong>Vikram Gangpariya</strong>, a passionate backend developer from Bikaner, India with 2+ years of professional experience in building scalable APIs and robust server-side solutions.
                                         I specialize in <strong>Node.js</strong>, working across multiple industries like e-commerce, SaaS, and social platforms.
                                     </p>
                                     <p>
