@@ -1,35 +1,41 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Footer from "../../common/Footer";
 import Sidebar from "../../common/Sidebar";
+import emailjs from 'emailjs-com';
 
 export default function Contact() {
     const form = useRef();
+    const [isSending, setIsSending] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const sendEmail = (e) => {
         e.preventDefault();
+        setIsSending(true);
 
         emailjs.sendForm(
-            "service_9aey0ff",//'your_service_id',
-            "template_vmpsn6m",//'your_template_id',
+            "service_s4uik6y",
+            "template_vmpsn6m",
             form.current,
-            "1veXMNrzoaUMaq2kD"//'your_public_key'
+            "1veXMNrzoaUMaq2kD"
         ).then(
             () => {
-                alert('Message sent successfully!');
+                setIsSending(false);
                 form.current.reset();
+                setShowModal(true); // show success modal
             },
             (error) => {
                 console.error(error);
+                setIsSending(false);
                 alert('Failed to send message. Please try again.');
             }
         );
     };
+
     return (
         <>
             <div id="colorlib-page">
-                <Sidebar></Sidebar>
+                <Sidebar />
 
-                {/* END COLORLIB-ASIDE */}
                 <div id="colorlib-main">
                     <section className="ftco-section contact-section">
                         <div className="container">
@@ -45,31 +51,23 @@ export default function Contact() {
                                 </p>
 
                                 <div className="col-md-4">
-                                    <p>
-                                        <span>Address:</span> Bikaner, Rajasthan, India
-                                    </p>
+                                    <p><span>Address:</span> Bikaner, Rajasthan, India</p>
                                 </div>
                                 <div className="col-md-4">
-                                    <p>
-                                        <span>Phone:</span>{" "}
-                                        <a href="tel:+918386059147">+91 83860 59147</a>
-                                    </p>
+                                    <p><span>Phone:</span> <a href="tel:+918386059147">+91 83860 59147</a></p>
                                 </div>
                                 <div className="col-md-4">
-                                    <p>
-                                        <span>Email:</span>{" "}
-                                        <a href="mailto:vikramgangpariya27@gamil.com">vikramgangpariya27@gamil.com</a>
-                                    </p>
+                                    <p><span>Email:</span> <a href="mailto:vikramgangpariya27@gamil.com">vikramgangpariya27@gamil.com</a></p>
                                 </div>
-
                             </div>
+
                             <div className="row block-9">
                                 <div className="col-md-6 order-md-last pr-md-5">
                                     <form ref={form} onSubmit={sendEmail}>
                                         <div className="form-group">
                                             <input
                                                 type="text"
-                                                name="from_name"
+                                                name="name"
                                                 className="form-control"
                                                 placeholder="Your Name"
                                                 required
@@ -78,7 +76,7 @@ export default function Contact() {
                                         <div className="form-group">
                                             <input
                                                 type="email"
-                                                name="from_email"
+                                                name="email"
                                                 className="form-control"
                                                 placeholder="Your Email"
                                                 required
@@ -104,11 +102,13 @@ export default function Contact() {
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <input
+                                            <button
                                                 type="submit"
-                                                value="Send Message"
                                                 className="btn btn-primary py-3 px-5"
-                                            />
+                                                disabled={isSending}
+                                            >
+                                                {isSending ? "Sending..." : "Send Message"}
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -121,17 +121,48 @@ export default function Contact() {
                                     />
                                 </div>
                             </div>
-
                         </div>
                     </section>
 
-                    <Footer></Footer>
+                    <Footer />
                 </div>
-                {/* END COLORLIB-MAIN */}
-
             </div>
-            {/* END COLORLIB-PAGE */}
-        </>
 
+            {/* ✅ Success Modal */}
+            {showModal && (
+                <div
+                    className="modal fade show"
+                    tabIndex="-1"
+                    style={{
+                        display: "block",
+                        backgroundColor: "rgba(0, 0, 0, 0.6)",
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        zIndex: 1050,
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}
+                    onClick={() => setShowModal(false)}
+                >
+                    <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Message Sent</h5>
+                                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+                            </div>
+                            <div className="modal-body">
+                                <p>Your message has been sent successfully.</p>
+                            </div>
+                            <div className="modal-footer">
+                                <button className="btn btn-primary" onClick={() => setShowModal(false)}>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     );
-};
+}
