@@ -34,7 +34,7 @@ export default function Sidebar() {
                         </NavLink>
                     </li>
                     <li>
-                        <a href="/pdf/VikramCV.pdf" target="_blank" rel="noopener noreferrer">
+                        <a href="pdf/VikramCV.pdf" target="_blank" rel="noopener noreferrer">
                             Resume
                         </a>
                     </li>
