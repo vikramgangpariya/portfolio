@@ -115,7 +115,7 @@ export default function Contact() {
 
                                 <div className="col-md-6">
                                     <img
-                                        src="../images/contact.jpg"
+                                        src="images/contact.jpg"
                                         alt="Location"
                                         className="img-fluid"
                                     />
